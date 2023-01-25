@@ -1,20 +1,20 @@
 .search {
-  display: flex;
+  /* display: flex; */
   background-color: #000;
 }
 
-.input {
-  width: 400px;
-  margin-left: 70px;
-}
-
 .input > .form-control {
-  background-color: rgb(31, 30, 30);
+  background-color: #1f1e1e;
   border: none;
   color: #fff;
 }
 
 .btn {
-  /* margin-top: 70px; */
-  margin-left: 10px;
+  height: 37px;
+}
+
+@media (max-width: 700px) {
+  .search > form {
+    width: 100% !important;
+  }
 }

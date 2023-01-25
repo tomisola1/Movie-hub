@@ -7,16 +7,20 @@ import "./search.css";
 const Search = () => {
   return (
     <Layout>
-      <div className="search">
-        <InputGroup className="mt-3 input ">
-          <Form.Control
-            aria-label="Default"
-            aria-describedby="inputGroup-sizing-default"
-          />
-        </InputGroup>
-        <Button variant="success" className="btn mt-3">
-          Search
-        </Button>{" "}
+      <div className="search px-5">
+        <Form className=" d-flex w-50 gap-3 pt-3">
+          <InputGroup className="mb-3 input ">
+            <Form.Control
+              className="search-box"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+              placeholder="search movies"
+            />
+          </InputGroup>
+          <Button variant="success" className="search-btn btn">
+            Search
+          </Button>{" "}
+        </Form>
       </div>
     </Layout>
   );

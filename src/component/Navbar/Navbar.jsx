@@ -6,25 +6,28 @@ import "./Navbar.css";
 
 const NavBar = () => {
   return (
-    <Navbar bg="dark" variant="dark" fixed="top">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
       <Container>
         <Navbar.Brand href="/" className="logo">
           Movie Hub
         </Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="/" className="nav-text">
-            <FaFilm className="icons" />
-            Movies
-          </Nav.Link>
-          <Nav.Link href="/series" className="nav-text">
-            <FaTv className="icons" />
-            TV Series
-          </Nav.Link>
-          <Nav.Link href="/search" className="nav-text">
-            <FaSearch className="icons" />
-            Search
-          </Nav.Link>
-        </Nav>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/" className="nav-text">
+              <FaFilm className="icons" />
+              Movies
+            </Nav.Link>
+            <Nav.Link href="/series" className="nav-text">
+              <FaTv className="icons" />
+              TV Series
+            </Nav.Link>
+            <Nav.Link href="/search" className="nav-text">
+              <FaSearch className="icons" />
+              Search
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
