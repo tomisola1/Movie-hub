@@ -1,0 +1,20 @@
+.search {
+  display: flex;
+  background-color: #000;
+}
+
+.input {
+  width: 400px;
+  margin-left: 70px;
+}
+
+.input > .form-control {
+  background-color: rgb(31, 30, 30);
+  border: none;
+  color: #fff;
+}
+
+.btn {
+  /* margin-top: 70px; */
+  margin-left: 10px;
+}

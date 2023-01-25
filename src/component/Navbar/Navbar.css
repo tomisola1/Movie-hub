@@ -1,0 +1,13 @@
+.logo {
+  font-weight: 500;
+}
+
+.nav-text {
+  display: flex;
+  align-items: center;
+}
+
+.icons {
+  font-size: 18px;
+  margin-right: 5px;
+}
