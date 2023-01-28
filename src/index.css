@@ -1,10 +1,44 @@
-html {
+body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: black !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.spin {
+  height: 80vh;
+}
+
+.movieCard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.search {
+  background-color: #000;
+}
+
+.input > .form-control {
+  background-color: #1f1e1e;
+  border: none;
+  color: #fff;
+}
+
+.btn {
+  height: 37px;
+}
+
+.nav-link:active {
+  color: #fff;
+}
+
+@media (max-width: 700px) {
+  .search > form {
+    width: 100% !important;
+  }
 }

@@ -1,24 +1,20 @@
 .containers {
-  /* margin-top: 30px; */
   background-color: #000;
 }
 
 .card {
-  background-color: #1f1e1e;
-  color: #fff;
-  border: none;
-
+  background-color: #1f1e1e !important;
+  border: none !important;
   width: 100%;
 }
 
 .card-wrapper {
-  width: 260px;
   padding: 15px 15px 0;
   display: flex;
   align-items: center;
   text-align: center;
   background-color: #1f1e1e;
-  transition: all 0.3s;
+  transition: all 1s;
 }
 
 .card-wrapper:hover {
@@ -33,13 +29,13 @@
 
 .card-title {
   height: 26px;
-  font-size: 16px;
+  color: #fff;
+  font-size: 16px !important;
 }
 
 @media (max-width: 600px) {
   .card-wrapper {
     width: 100%;
-    /* height: 400px; */
   }
 
   .card {
@@ -50,6 +46,5 @@
   .card-img {
     width: 100%;
     object-fit: cover;
-    height: 350px;
   }
 }

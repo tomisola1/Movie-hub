@@ -19,3 +19,8 @@
   color: #fff;
   border-color: #76f3b8;
 }
+@media (max-width: 500px) {
+  .pagination-container {
+    width: auto;
+  }
+}

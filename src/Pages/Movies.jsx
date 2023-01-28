@@ -3,58 +3,63 @@ import { motion, AnimatePresence } from "framer-motion";
 import Layout from "../component/PageLayout";
 import MovieCard from "../component/Movie Card/MovieCard";
 import MovieContext from "../context/MovieContext";
-import Spinner from "react-bootstrap/Spinner";
-import Row from "react-bootstrap/Row";
 import PaginationComponent from "../component/Pagination/Pagination";
 import { useEffect } from "react";
+import "../index.css";
+
+const numberOfMovies = 15;
 
 const Movies = () => {
-  const { isLoading, movies } = useContext(MovieContext);
-  const [movie, setMovie] = useState(movies.slice(1, 10));
-  const [active, setActive] = useState(1);
-  const numberOfMovies = 15;
+  const { movies, getAllMovies } = useContext(MovieContext);
 
-  let indexOfLastMovie = active * numberOfMovies;
-  let indexOfFirstMovie = indexOfLastMovie - numberOfMovies;
-  console.log("movie", movie);
-  //   useEffect(() => {
-  //     if (active === 1) {
-  //       const data = movie.slice(indexOfFirstMovie, indexOfLastMovie);
-  //       console.log(data);
-  //       setMovie(data);
-  //     }
-  //   }, []);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sliceEndValue, setSliceEndValue] = useState(
+    currentPage * numberOfMovies
+  );
+  const [sliceStartValue, setSliceStartValue] = useState(
+    sliceEndValue - numberOfMovies
+  );
+
+  useEffect(() => {
+    getAllMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChangePage = (number) => {
-    indexOfLastMovie = number * numberOfMovies;
-    indexOfFirstMovie = indexOfLastMovie - numberOfMovies;
-    setActive(number);
-    let tenMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
-    setMovie(tenMovies);
+    let indexOfLastMovie = number * numberOfMovies;
+    let indexOfFirstMovie = indexOfLastMovie - numberOfMovies;
+
+    setSliceEndValue(indexOfLastMovie);
+    setSliceStartValue(indexOfFirstMovie);
+    setCurrentPage(number);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
     <Layout>
       <AnimatePresence>
         <div className="containers pt-4 px-5">
-          <Row xs={1} md={3} className="g-4 gap-3">
-            {movie.map((movie, idx) => (
+          <div className="movieCard-container">
+            {movies.slice(sliceStartValue, sliceEndValue).map((movie, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                style={{ width: "260px" }}
               >
                 <MovieCard key={idx} movie={movie} />
               </motion.div>
             ))}
-          </Row>
+          </div>
         </div>
       </AnimatePresence>
       <PaginationComponent
         total={movies.length / numberOfMovies}
-        current={active}
+        current={currentPage}
         onChangePage={handleChangePage}
       />
     </Layout>

@@ -1,31 +1,37 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { NavLink } from "react-router-dom";
 import { FaSearch, FaTv, FaFilm } from "react-icons/fa";
 import "./Navbar.css";
 
 const NavBar = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="dark"
+      variant="dark"
+      sticky="top"
+      className="nav-bar"
+    >
       <Container>
-        <Navbar.Brand href="/" className="logo">
-          Movie Hub
-        </Navbar.Brand>
+        <NavLink className="logo">Movie Hub</NavLink>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/" className="nav-text">
+          <Nav className="me-auto nav-links">
+            <NavLink to="/" className="nav-text">
               <FaFilm className="icons" />
               Movies
-            </Nav.Link>
-            <Nav.Link href="/series" className="nav-text">
+            </NavLink>
+            <NavLink to="/series" className="nav-text">
               <FaTv className="icons" />
               TV Series
-            </Nav.Link>
-            <Nav.Link href="/search" className="nav-text">
+            </NavLink>
+            <NavLink to="/search" className="nav-text">
               <FaSearch className="icons" />
               Search
-            </Nav.Link>
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

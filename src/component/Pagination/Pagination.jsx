@@ -4,7 +4,6 @@ import Pagination from "react-bootstrap/Pagination";
 import "./Pagination.css";
 
 const PaginationComponent = ({ total, current, onChangePage }) => {
-  //   let selected = 1;
   let items = [];
   if (current > 1) {
     items.push(

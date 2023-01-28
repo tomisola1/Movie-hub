@@ -1,25 +1,34 @@
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Layout from "../component/PageLayout";
 import { useContext, useState } from "react";
-import "./search.css";
 import MovieContext from "../context/MovieContext";
+import MovieCard from "../component/Movie Card/MovieCard";
+import Spinner from "react-bootstrap/Spinner";
+import "../index.css";
 
 const Search = () => {
-  const { isLoading, movies } = useContext(MovieContext);
+  const { isLoading, getMoviesByTitle } = useContext(MovieContext);
   const [query, setQuery] = useState("");
-  const [state, setState] = useState({
-    query: "",
-    list: [],
-  });
+  const [movies, setMovies] = useState([]);
 
   const handleChange = (e) => {
+    if (e.target.value === "") {
+      setMovies([]);
+    }
     setQuery(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    getMoviesByTitle(query.trim())
+      .then((res) => {
+        setMovies(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -31,7 +40,7 @@ const Search = () => {
               className="search-box"
               aria-label="Default"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="search movies"
+              placeholder="Search by Movies Title"
               onChange={handleChange}
               value={query}
             />
@@ -46,35 +55,24 @@ const Search = () => {
         </Form>
       </div>
       <div className="search-list">
-        {state.query === ""
-          ? ""
-          : state.list.map((movie) => {
-              return (
-                // <li key={movie?.title} className="search-item">
-                //   <img
-                //     src={`${IMAGE_BASE_URL}/${movie?.poster_path}`}
-                //     alt=""
-                //     width="50px"
-                //   />
-                //   {movie?.title}
-                // </li>
-                <div className="containers pt-4 px-5">
-                  <Row xs={1} sm={3} md={4} lg={4} className="g-4 gap-3">
-                    <Col>
-                      <div className="card-wrapper">
-                        <Card className="h-100">
-                          <Card.Img src={movie?.image} />
-                          <Card.Title className="my-3">
-                            {movie?.title}
-                          </Card.Title>
-                        </Card>
-                      </div>
-                    </Col>
-                    );
-                  </Row>
-                </div>
-              );
-            })}
+        {isLoading ? (
+          <div className="d-flex justify-content-center align-items-center spin">
+            <Spinner animation="border" variant="success" />
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "20px",
+              padding: "20px 50px",
+            }}
+          >
+            {movies.map((movie, idx) => (
+              <MovieCard key={idx} movie={movie} />
+            ))}
+          </div>
+        )}
       </div>
     </Layout>
   );

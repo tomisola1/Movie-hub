@@ -1,13 +1,31 @@
+.nav-bar {
+  height: 60px;
+}
+
 .logo {
   font-weight: 500;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
 }
 
 .nav-text {
   display: flex;
   align-items: center;
+  color: #adadad;
+  text-decoration: none;
+}
+
+.nav-text:hover {
+  color: #fff;
 }
 
 .icons {
   font-size: 18px;
   margin-right: 5px;
+}
+
+.nav-links {
+  margin-left: 20px;
+  gap: 15px;
 }
